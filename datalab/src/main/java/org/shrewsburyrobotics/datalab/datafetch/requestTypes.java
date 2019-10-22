@@ -1,4 +1,4 @@
-package org.shrewsburyrobotics.datalab;
+package org.shrewsburyrobotics.datalab.datafetch;
 
 public enum requestTypes {
     MATCHES,
