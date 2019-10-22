@@ -1,13 +1,20 @@
 package org.shrewsburyrobotics.datalab;
 
+import java.io.IOException;
+
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
 public class datafetcher {
-    private final OkHttpClient httpClient = new OkHttpClient();
+    //create signleton for the httpClient
+    private final OkHttpClient mHttpClient = new OkHttpClient();
+    public String mBody;
+    private int mTimeOut;
 
-    private datafetcher() {
+
+    public datafetcher(int timeout) {
+        mTimeOut = timeout;
 
     }
 
@@ -19,9 +26,10 @@ public class datafetcher {
             .addHeader("Accept", "application/json")
             .build();
         
-        try (Response response = httpClient.newCall(request).execute()) {
+        try (Response mResponse = mHttpClient.newCall(request).execute()) {          
+            if(!mResponse.isSuccessful()) throw new IOException("Unexpected error: " + mResponse);
 
-
+            mBody = mResponse.body().string();
         }
-        }
+    }
 }
