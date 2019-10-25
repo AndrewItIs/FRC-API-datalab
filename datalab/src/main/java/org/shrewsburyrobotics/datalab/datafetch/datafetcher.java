@@ -14,6 +14,7 @@ public ResponseBody mBody;
 private int mTimeOut;
 private String mUrl = "https://frc-api.firstinspires.org/v2.0/";
 private String mParamURL = "?";
+public requestTypes rtype;
 
 //contructor for general
 public datafetcher(int timeout, yearIndex season , requestTypes requestType) {
@@ -63,6 +64,7 @@ public datafetcher(int timeout, yearIndex season , requestTypes requestType) {
                 //defaults to matches
                 mUrl += "matches/";
             
+            rtype = requestType;
 
 
         }
@@ -118,6 +120,7 @@ public datafetcher(int timeout, yearIndex season , requestTypes requestType) {
         }
 
         mUrl += eventCode;
+        rtype = requestType;
     }
 
     //for detailed scores
@@ -179,6 +182,7 @@ public datafetcher(int timeout, yearIndex season , requestTypes requestType) {
             case FINALS:
                 mUrl += "playoff/";
         }
+        rtype = requestType;
 
     }
 
