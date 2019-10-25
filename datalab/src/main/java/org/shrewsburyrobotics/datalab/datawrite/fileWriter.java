@@ -2,6 +2,7 @@ package org.shrewsburyrobotics.datalab.datawrite;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 
 import com.google.gson.Gson;
 
@@ -12,13 +13,14 @@ import org.json.JSONObject;
 import org.shrewsburyrobotics.datalab.datafetch.requestTypes;
 
 import okhttp3.ResponseBody;
-import java.nio.charset.StandardCharsets;
 
 
 public class fileWriter {
 Gson gson = new Gson();
 JSONArray docs;
 JSONObject jsonResponse;
+public File file;
+public String csv;
 
     public fileWriter(ResponseBody mBody, requestTypes mRequestTypes) {
         //convert response body into JSON
@@ -51,10 +53,17 @@ JSONObject jsonResponse;
                 docs = jsonResponse.getJSONArray("matches");
         }
 
-            File file = new File("/downloads");
+            file = new File("/downloads");
 
-            String csv = CDL.toString(docs);
-            FileUtils.writeStringToFile(file, csv, StandardCharsets.UTF_8);
+            csv = CDL.toString(docs);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void writeToFile() {
+        try {
+        FileUtils.writeStringToFile(file, csv, StandardCharsets.UTF_8);
         } catch (IOException e) {
             e.printStackTrace();
         }
