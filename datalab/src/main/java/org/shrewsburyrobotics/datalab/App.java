@@ -32,7 +32,11 @@ public class App {
         app.recieveBody();
 
         if(app.responseTest != null) {
-            System.out.println(app.responseTest);
+ //           try {
+            System.out.println(app.responseTest.toString());
+ //           } catch (IOException e) {
+ //               e.printStackTrace();
+           // }
         }
 
     }
