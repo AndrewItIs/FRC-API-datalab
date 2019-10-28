@@ -22,10 +22,9 @@ JSONObject jsonResponse;
 public File file;
 public String csv;
 
-    public fileWriter(ResponseBody mBody, requestTypes mRequestTypes) {
+    public fileWriter(String mBody, requestTypes mRequestTypes) {
         //convert response body into JSON
-        try {
-            jsonResponse = new JSONObject(mBody.string());
+            jsonResponse = new JSONObject(mBody);
 
             switch(mRequestTypes){
             case MATCHES:
@@ -56,9 +55,7 @@ public String csv;
             file = new File("/downloads");
 
             csv = CDL.toString(docs);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+         
     }
 
     public void writeToFile() {

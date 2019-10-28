@@ -10,7 +10,7 @@ import okhttp3.ResponseBody;
 public class datafetcher {
 //create signleton for the httpClient
 private final OkHttpClient mHttpClient = new OkHttpClient();
-public ResponseBody mBody;
+public String mBody;
 private int mTimeOut;
 private String mUrl = "https://frc-api.firstinspires.org/v2.0/";
 private String mParamURL = "?";
@@ -210,13 +210,13 @@ public datafetcher(int timeout, yearIndex season , requestTypes requestType) {
         try (Response mResponse = mHttpClient.newCall(request).execute()) {          
             if(!mResponse.isSuccessful()) throw new IOException("Unexpected error: " + mResponse);
 
-            mBody = mResponse.body();
+            mBody = mResponse.body().string();
         } catch(IOException e) {
             e.printStackTrace();
         }
     }
 
-    public ResponseBody receiveBody(){
+    public String receiveBody(){
         return mBody;
     }
 }

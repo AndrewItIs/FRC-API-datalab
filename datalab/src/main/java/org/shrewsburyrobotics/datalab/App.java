@@ -12,7 +12,7 @@ import okhttp3.ResponseBody;
 
 public class App {
     private datafetcher mDataFetcher;
-    private ResponseBody responseTest;
+    private String responseTest;
     private fileWriter mFileWriter;
     
     private void runAwards() {
@@ -27,11 +27,11 @@ public class App {
         responseTest = mDataFetcher.receiveBody();
     }
 
-    private ResponseBody recieveBody() {
+    private String recieveBody() {
        return responseTest;
     }
 
-    private void writeToFile(ResponseBody response, requestTypes type) {
+    private void writeToFile(String response, requestTypes type) {
         mFileWriter = new fileWriter(response, type);
         mFileWriter.writeToFile();
     }
@@ -43,11 +43,8 @@ public class App {
         //app.writeToFile(app.recieveBody(), requestTypes.AWARDS);
 
         if(app.responseTest != null) {
-            try{
-            System.out.println("success: " + app.recieveBody().string());
-            } catch (IOException e) {}
-            System.out.println("whoopsie");
+            System.out.println("success: " + app.recieveBody());
+            
         }
-
     }
 }
