@@ -2,27 +2,25 @@ package org.shrewsburyrobotics.datalab.datawrite;
 
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 
 import com.google.gson.Gson;
 
-import org.apache.commons.io.FileUtils;
 import org.json.CDL;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.shrewsburyrobotics.datalab.datafetch.requestTypes;
-
-import okhttp3.ResponseBody;
 
 
 public class fileWriter {
 Gson gson = new Gson();
 JSONArray docs;
 JSONObject jsonResponse;
-public File file = new File("C://Users//Team467//Documents//testcsvs");
+public File file = new File("C://Users//Andrew//Documents//testcsv");
+public File mTestFile;
 public String csv;
+private String fileName;
+public int mFileIndexNumber;
 
     public fileWriter(String mBody, requestTypes mRequestTypes) {
         //convert response body into JSON
@@ -32,27 +30,33 @@ public String csv;
             switch(mRequestTypes){
             case MATCHES:
                 docs = jsonResponse.getJSONArray("Matches");
+                fileName = "Matches";
                 break;
 
             case AWARDS:
                 docs = jsonResponse.getJSONArray("Awards");
+                fileName = "Awards";
                 break;
 
             case EVENTS:
                  docs = jsonResponse.getJSONArray("Events");
+                 fileName = "Events";
                 break;
 
             case TEAMS:
                  docs = jsonResponse.getJSONArray("Teams");
+                 fileName = "Teams";
                 break;
 
             case SCORES:
-                docs = jsonResponse.getJSONArray("Scores");
+                docs = jsonResponse.getJSONArray("MatchScores");
+                fileName = "Scores";
                 break;
 
             default:
                 //defaults to matches
                 docs = jsonResponse.getJSONArray("Matches");
+                fileName = "Matches";
         }
 
             csv = CDL.toString(docs);
@@ -60,15 +64,19 @@ public String csv;
     }
 
     public void writeToFile() throws IOException {
-            // if(file.createNewFile()){
-            //     System.out.println("file created");
-            // } else {
-            //     System.out.println("file already exists");
-            // }
+        mTestFile = new File("C://Users//Andrew//Documents//testcsv" + "//" + fileName + "_" + mFileIndexNumber + ".csv");
+             if(mTestFile.isFile()) {
+                mFileIndexNumber++;
+                System.out.println("file exists writing new file with " + mFileIndexNumber);
+            } else {
+                System.out.println("file does not exist");
+                if(mFileIndexNumber != 0) {
+                    mFileIndexNumber = 0;
+                }
+            }
 
-       FileOutputStream out = new FileOutputStream(file + "//test" + 2 + ".csv");
-        out.write(csv.getBytes());
-        out.close();
-
+            FileOutputStream out = new FileOutputStream(file + "//" + fileName + "_" + mFileIndexNumber + ".csv");
+            out.write(csv.getBytes());
+            out.close();
     }
 }

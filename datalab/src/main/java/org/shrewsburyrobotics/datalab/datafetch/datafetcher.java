@@ -172,7 +172,7 @@ public datafetcher(int timeout, yearIndex season , requestTypes requestType) {
                 mUrl += "matches/";
         }
 
-        mUrl += eventCode;
+        mUrl += eventCode +"/";
 
         switch(level) {
             case QUALIFICATIONS:
