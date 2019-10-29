@@ -33,7 +33,11 @@ public class App {
 
     private void writeToFile(String response, requestTypes type) {
         mFileWriter = new fileWriter(response, type);
+        try {
         mFileWriter.writeToFile();
+        } catch(IOException e) {
+            e.printStackTrace();
+        }
     }
 
 
@@ -41,9 +45,10 @@ public class App {
         App app = new App();
         app.runAwards();
         //app.writeToFile(app.recieveBody(), requestTypes.AWARDS);
+        app.writeToFile(app.responseTest, requestTypes.AWARDS);
 
         if(app.responseTest != null) {
-            System.out.println("success: " + app.recieveBody());
+           System.out.println("success: " + app.recieveBody());
             
         }
     }

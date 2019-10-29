@@ -1,0 +1,24 @@
+eventCode,awardId,eventId,series,person,teamId,name,teamNumber,eventDivisionId,schoolName,fullTeamName
+MABOS,581,37368,1,null,876006,District Chairman's Award,1721,null,Concord High School,Comcast/Spain Family/BAE Systems/Boston Scientific&Concord High School
+MABOS,633,37368,1,null,878788,District Engineering Inspiration Award,4909,null,Billerica Memorial High School,Analog Devices/MRSI Systems/FLIR/Raytheon&Billerica Memorial High School
+MABOS,609,37368,1,null,879724,District Event Winner,5687,null,Baxter Academy for Tech & Sciences,Baxter Academy for Tech & Sciences
+MABOS,609,37368,2,null,874950,District Event Winner,125,null,Greater Boston 4-H Robotics & Boston Latin & Brookline High & Revere High,Northeastern University/Sonos Inc./United Technologies/Markforged/PTC/BAE Systems/West Coast Products LLC/NASA&Revere High&Brookline High&Boston Latin&Greater Boston 4-H Robotics
+MABOS,609,37368,3,null,875720,District Event Winner,1307,null,St Thomas Aquinas High School,St Thomas Aquinas High School
+MABOS,611,37368,1,null,878788,District Event Finalist,4909,null,Billerica Memorial High School,Analog Devices/MRSI Systems/FLIR/Raytheon&Billerica Memorial High School
+MABOS,611,37368,2,null,876062,District Event Finalist,1768,null,Nashoba Regional,SynQor/Bose & Nashoba Regional
+MABOS,611,37368,3,null,881188,District Event Finalist,6763,null,Manchester School of Technology,Manchester NH Rotary Club/NH Dept of Education/Atom/St Mary's Bank/Bosch/Feed NH .org/Solid Xperts/Qualcomm&Manchester School of Technology
+MABOS,657,37368,1,null,878788,Safety Award sponsored by Underwriters Laboratories,4909,null,Billerica Memorial High School,Analog Devices/MRSI Systems/FLIR/Raytheon&Billerica Memorial High School
+MABOS,289,37368,1,null,875810,Industrial Design Award sponsored by General Motors,1474,null,Tewksbury Memorial High,Holt & Bugbee/Analog Devices Inc./Grainger Foundation/Lytron/Lockheed Martin/Raytheon/PTC&Tewksbury Memorial High
+MABOS,251,37368,1,null,945972,Highest Rookie Seed,7795,null,Winthrop Sr High,The 11 Foundation/The Viking Pride Foundation&Winthrop Sr High
+MABOS,329,37368,1,null,875232,Judges' Award,467,null,Shrewsbury Sr High,Shrewsbury Robotics/Vangy Tool Company/MathWorks/BAE Systems&Shrewsbury Sr High
+MABOS,417,37368,1,null,927998,Rookie All Star Award,7822,null,Hamilton-Wenham Reg High,Hamilton Wenham Edfund&Hamilton-Wenham Reg High
+MABOS,643,37368,1,null,945972,Rookie Inspiration Award sponsored by National Instruments,7795,null,Winthrop Sr High,The 11 Foundation/The Viking Pride Foundation&Winthrop Sr High
+MABOS,209,37368,1,null,875074,Entrepreneurship Award sponsored by Kleiner Perkins Caufield and Byers,246,null,Boston University Academy,Boston University & Boston University Academy
+MABOS,645,37368,1,null,880434,Team Spirit Award sponsored by FCA Foundation,6201,null,Somerville High,Somerville Public Schools&Somerville High
+MABOS,621,37368,1,null,874950,Excellence in Engineering Award sponsored by Delphi,125,null,Greater Boston 4-H Robotics & Boston Latin & Brookline High & Revere High,Northeastern University/Sonos Inc./United Technologies/Markforged/PTC/BAE Systems/West Coast Products LLC/NASA&Revere High&Brookline High&Boston Latin&Greater Boston 4-H Robotics
+MABOS,245,37368,1,null,879544,Gracious Professionalism Award sponsored by Johnson & Johnson,5556,null,Amesbury High & Sparhawk School,Merrimac Tool Company/Test Equipment Depot/Analog Devices&Sparhawk School&Amesbury High
+MABOS,151,37368,1,null,877536,Creativity Award sponsored by Xerox,3597,null,Robert W Traip Academy,Portsmouth Naval Shipyard/DoD STEM/Robotics Institute of Maine/Bob's ClamHut/Blue Mermaid Island Grill/Kittery Block Party/The Fabulous Find Resale Boutique/Roe G Cole Design and Construction/Attar Engineering/The Home Depot in Portsmouth NH/Blue Dolphin Screen-print and Embroidery&Robert W Traip Academy
+MABOS,647,37368,1,null,876062,Quality Award sponsored by Motorola Solutions Foundation,1768,null,Nashoba Regional,SynQor/Bose & Nashoba Regional
+MABOS,295,37368,1,null,876488,Innovation in Control Award sponsored by Rockwell Automation,2423,null,Watertown High,Monsanto Fund/Google/Watertown Rotary Club/Enanta Pharmaceuticals/Watertown Savings Bank/Gartaganis Brothers/Executive Realty/Watertown High School PTSO&Watertown High
+MABOS,661,37368,1,null,879724,Autonomous Award sponsored by Ford,5687,null,Baxter Academy for Tech & Sciences,Baxter Academy for Tech & Sciences
+MABOS,277,37368,1,null,882034,Imagery Award in honor of Jack Kamen,7266,null,North Brookfield High,NASA/Howe Lumber/Anderson Windows&North Brookfield High
