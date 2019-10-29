@@ -20,11 +20,12 @@ public File file = new File("C://Users//Andrew//Documents//testcsv");
 public File mTestFile;
 public String csv;
 private String fileName;
+public fileIndex mfileIndex;
 public int mFileIndexNumber;
+public String flattenedJson, test;
 
     public fileWriter(String mBody, requestTypes mRequestTypes) {
         //convert response body into JSON
-        String fileSeperator = System.getProperty("file.seperator");
             jsonResponse = new JSONObject(mBody);
 
             switch(mRequestTypes){
@@ -60,14 +61,14 @@ public int mFileIndexNumber;
         }
 
             csv = CDL.toString(docs);
-         
+
     }
 
     public void writeToFile() throws IOException {
-        mTestFile = new File("C://Users//Andrew//Documents//testcsv" + "//" + fileName + "_" + mFileIndexNumber + ".csv");
+        mTestFile = new File("C://Users//Andrew//Documents//testcsv" + "//" + fileName + "_" + mfileIndex.fileIndex + ".csv");
              if(mTestFile.isFile()) {
-                mFileIndexNumber++;
-                System.out.println("file exists writing new file with " + mFileIndexNumber);
+                mfileIndex.fileIndex++;
+                System.out.println("file exists writing new file with " + mfileIndex.fileIndex);
             } else {
                 System.out.println("file does not exist");
                 if(mFileIndexNumber != 0) {
@@ -75,7 +76,7 @@ public int mFileIndexNumber;
                 }
             }
 
-            FileOutputStream out = new FileOutputStream(file + "//" + fileName + "_" + mFileIndexNumber + ".csv");
+            FileOutputStream out = new FileOutputStream(file + "//" + fileName + "_" + mfileIndex.fileIndex + ".csv");
             out.write(csv.getBytes());
             out.close();
     }

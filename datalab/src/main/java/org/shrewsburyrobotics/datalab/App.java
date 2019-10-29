@@ -81,14 +81,14 @@ public class App {
 
     public static void main( String[] args ) {
         App app = new App();
-        app.runAwards();
-        app.writeToFile(app.recieveBody(), requestTypes.AWARDS);
+      //  app.runAwards();
+      //  app.writeToFile(app.recieveBody(), requestTypes.AWARDS);
 
         app.runMatchScores();
         app.writeToFile(app.recieveBody(), requestTypes.MATCHES);
 
-        app.runDetailedScores();
-        app.writeToFile(app.recieveBody(), requestTypes.SCORES);
+      //  app.runDetailedScores();
+        //app.writeToFile(app.recieveBody(), requestTypes.SCORES);
         
     }
 }
