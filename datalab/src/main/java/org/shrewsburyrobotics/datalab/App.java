@@ -2,21 +2,25 @@ package org.shrewsburyrobotics.datalab;
 
 import java.io.IOException;
 
+import org.json.CDL;
 import org.shrewsburyrobotics.datalab.datafetch.datafetcher;
 import org.shrewsburyrobotics.datalab.datafetch.requestTypes;
 import org.shrewsburyrobotics.datalab.datafetch.tournementLevel;
 import org.shrewsburyrobotics.datalab.datafetch.yearIndex;
+import org.shrewsburyrobotics.datalab.datawrite.fileIndex;
 import org.shrewsburyrobotics.datalab.datawrite.fileWriter;
+import org.shrewsburyrobotics.datalab.datawrite.frcJsonParser;
+import org.shrewsburyrobotics.datalab.datawrite.frcJsonParser;
 
 
 public class App {
-    private datafetcher mDataFetcher;
     private String responseTest;
     private String responseTest1;
-    private fileWriter mFileWriter;
+    private frcJsonParser mJsonParser;
+    private fileWriter mfWriter;
+    private datafetcher mDataFetcher = new datafetcher();
     
     private void runAwards() {
-        mDataFetcher = new datafetcher(300, yearIndex.DEEPSPACE, requestTypes.AWARDS, "MABOS");
         mDataFetcher.addParameter("teamNumber", 467);
         try {
         mDataFetcher.sendGet();
@@ -28,11 +32,11 @@ public class App {
     }
 
     private void runMatchScores() {
-        mDataFetcher = new datafetcher(300, yearIndex.DEEPSPACE, requestTypes.MATCHES, "MABOS");
-        mDataFetcher.addParameter("teamNumber", 467);
-        mDataFetcher.addParameter("tournamentlevel", "playoff");
         try {
-        mDataFetcher.sendGet();
+        mDataFetcher.dataFetch(300, yearIndex.DEEPSPACE, requestTypes.MATCHES, "MABOS")
+        .addParameter("teamNumber", 467)
+        .addParameter("tournamentlevel", "playoff")
+        .sendGet();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -41,7 +45,6 @@ public class App {
     }
 
     private void runDetailedScores() {
-        mDataFetcher = new datafetcher(300, yearIndex.DEEPSPACE, requestTypes.SCORES, "MABOS", tournementLevel.QUALIFICATIONS);
         mDataFetcher.addParameter("matchNumber", 2);
         try {
         mDataFetcher.sendGet();
@@ -53,7 +56,6 @@ public class App {
     }
 
     private void run() {
-        mDataFetcher = new datafetcher(300, yearIndex.DEEPSPACE, requestTypes.SCORES, "MABOS", tournementLevel.QUALIFICATIONS);
         mDataFetcher.addParameter("matchNumber", 2);
         try {
         mDataFetcher.sendGet();
@@ -70,9 +72,10 @@ public class App {
     }
 
     private void writeToFile(String response, requestTypes type) {
-        mFileWriter = new fileWriter(response, type);
+        mJsonParser = new frcJsonParser(response, type);
+        mfWriter = new fileWriter(CDL.toString(mJsonParser.docs), "Matches");
         try {
-        mFileWriter.writeToFile();
+        mfWriter.writeToFile();
         } catch(IOException e) {
             e.printStackTrace();
         }

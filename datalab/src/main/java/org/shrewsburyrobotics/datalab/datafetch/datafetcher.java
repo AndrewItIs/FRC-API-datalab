@@ -16,8 +16,14 @@ private String mUrl = "https://frc-api.firstinspires.org/v2.0/";
 private String mParamURL = "?";
 public requestTypes rtype;
 
-//contructor for general
-public datafetcher(int timeout, yearIndex season , requestTypes requestType) {
+public datafetcher() {
+
+}
+
+/**
+ * for a general use
+ */
+public datafetcher dataFetch(int timeout, yearIndex season , requestTypes requestType) {
         mTimeOut = timeout; //no use currently
 
         //season switch
@@ -65,13 +71,18 @@ public datafetcher(int timeout, yearIndex season , requestTypes requestType) {
                 mUrl += "matches/";
             
             rtype = requestType;
-
-
         }
+        return this;
     }
 
-    //for event listings
-    public datafetcher(int timeout, yearIndex season, requestTypes requestType, String eventCode) {
+    /**
+     *specficially meant for event listings
+     * @param timeout unused
+     * @param season
+     * @param requestType
+     * @param eventCode
+     */
+    public datafetcher dataFetch(int timeout, yearIndex season, requestTypes requestType, String eventCode) {
         mTimeOut = timeout; //no use currently
 
         //season switch
@@ -121,10 +132,18 @@ public datafetcher(int timeout, yearIndex season , requestTypes requestType) {
 
         mUrl += eventCode;
         rtype = requestType;
+        return this;
     }
 
-    //for detailed scores
-    public datafetcher(int timeout, yearIndex season, requestTypes requestType, String eventCode, tournementLevel level) {
+    /**
+     * meant for specific scores
+     * @param timeout
+     * @param season
+     * @param requestType
+     * @param eventCode
+     * @param level
+     */
+    public datafetcher dataFetch(int timeout, yearIndex season, requestTypes requestType, String eventCode, tournementLevel level) {
         mTimeOut = timeout; //no use currently
 
         //season switch
@@ -183,17 +202,27 @@ public datafetcher(int timeout, yearIndex season , requestTypes requestType) {
                 mUrl += "playoff/";
         }
         rtype = requestType;
-
+        return this;
     }
 
-    //adding parameters
-    public void addParameter(String name, String value) {
+    /**
+     * add parameters
+     * @param name name of the paramter (string)
+     * @param value string value of the parameter
+     */
+    public datafetcher addParameter(String name, String value) {
         mParamURL = mParamURL + name + "=" + value + "&";
-
+        return this;
     }
 
-    public void addParameter(String name, double value) {
+    /**
+     * add parameters
+     * @param name name of the parameter
+     * @parma value int value of the parameter
+     */
+    public datafetcher addParameter(String name, double value) {
         mParamURL = mParamURL + name + "=" + Double.toString(value) + "&";
+        return this;
     }
 
     public void sendGet() throws IOException {
