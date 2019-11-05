@@ -214,17 +214,7 @@ public datafetcher dataFetch(int timeout, yearIndex season , requestTypes reques
         mParamURL = mParamURL + name + "=" + value + "&";
         return this;
     }
-
-    /**
-     * add parameters
-     * @param name name of the parameter
-     * @parma value int value of the parameter
-     */
-    public datafetcher addParameter(String name, double value) {
-        mParamURL = mParamURL + name + "=" + Double.toString(value) + "&";
-        return this;
-    }
-
+    
     public void sendGet() throws IOException {
         
         mUrl += mParamURL;

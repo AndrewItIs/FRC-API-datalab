@@ -12,7 +12,7 @@ public class teamProfileBuilder {
     private yearIndex mSeason;
     private String mEventString;
     public ArrayList<String> mEventArray = new ArrayList<String>(0);
-    public ArrayList<String> mMatchArray;
+    public ArrayList<String> mMatchArray = new ArrayList<String>(0);
 
     private datafetcher mEventDatafetcher;
 
@@ -27,7 +27,7 @@ public class teamProfileBuilder {
         try {
             mEventDatafetcher = new datafetcher()
                 .dataFetch(300, season, requestTypes.EVENTS)
-                .addParameter("teamNumber", teamNumber);
+                .addParameter("teamNumber", Double.toString(teamNumber));
             mEventDatafetcher.sendGet();
             mEventString = mEventDatafetcher.receiveBody();
             frcJsonParser mEventfWriter = new frcJsonParser(mEventString, requestTypes.EVENTS);
@@ -42,7 +42,18 @@ public class teamProfileBuilder {
 
     public teamProfileBuilder addMatches() {
         datafetcher mMatchDatafetcher = new datafetcher();
-//        mMatchDatafetcher.dataFetch(300, mSeason, requestTypes.MATCHES, "MABOS").addParameter("", value);
+        for(int i = 0; i <= mEventArray.size(); i++) {
+            try {            
+                mMatchDatafetcher.dataFetch(300, mSeason, requestTypes.MATCHES, mEventArray.get(i))
+                .addParameter("teamNumber", Double.toHexString(mTeamNumber))
+                .sendGet(); 
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            mMatchArray.add(mMatchDatafetcher.receiveBody());
+        }
+
         return this;
     }
 }

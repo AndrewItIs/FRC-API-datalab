@@ -21,7 +21,7 @@ public class App {
     private datafetcher mDataFetcher = new datafetcher();
     
     private void runAwards() {
-        mDataFetcher.addParameter("teamNumber", 467);
+        mDataFetcher.addParameter("teamNumber", "467");
         try {
         mDataFetcher.sendGet();
         } catch (IOException e) {
@@ -34,7 +34,7 @@ public class App {
     private void runMatchScores() {
         try {
         mDataFetcher.dataFetch(300, yearIndex.DEEPSPACE, requestTypes.MATCHES, "MABOS")
-        .addParameter("teamNumber", 467)
+        .addParameter("teamNumber", "467")
         .addParameter("tournamentlevel", "playoff")
         .sendGet();
         } catch (IOException e) {
@@ -45,7 +45,7 @@ public class App {
     }
 
     private void runDetailedScores() {
-        mDataFetcher.addParameter("matchNumber", 2);
+        mDataFetcher.addParameter("matchNumber", "2");
         try {
         mDataFetcher.sendGet();
         } catch (IOException e) {
@@ -56,7 +56,7 @@ public class App {
     }
 
     private void run() {
-        mDataFetcher.addParameter("matchNumber", 2);
+        mDataFetcher.addParameter("matchNumber", "2");
         try {
         mDataFetcher.sendGet();
         } catch (IOException e) {
