@@ -9,7 +9,7 @@ import org.shrewsburyrobotics.datalab.datafetch.requestTypes;
 public class fileWriter {
     public fileIndex mfileIndex;
     public int mFileIndexNumber;
-    public File file = new File("C://Users//Team467//Documents//testcsvs");
+    public File file = new File(fileIndex.path);
     public File mTestFile;
     private String fileName;
     private String mData;
@@ -21,7 +21,7 @@ public class fileWriter {
 
     public void writeToFile() throws IOException {
         //check to see if file exists
-        mTestFile = new File("C://Users//Team467//Documents//testcsvs" + "//" + fileName + "_" + mfileIndex.fileIndex + ".csv");
+        mTestFile = new File(fileIndex.path + "//" + fileName + "_" + mfileIndex.fileIndex + ".csv");
              if(mTestFile.isFile()) {
                 mfileIndex.fileIndex++;
                 System.out.println("file exists writing new file with " + mfileIndex.fileIndex);

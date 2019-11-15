@@ -25,7 +25,6 @@ public datafetcher() {
  */
 public datafetcher dataFetch(int timeout, yearIndex season , requestTypes requestType) {
         mTimeOut = timeout; //no use currently
-
         //season switch
         switch(season) {
             case POWER_UP:
@@ -214,7 +213,7 @@ public datafetcher dataFetch(int timeout, yearIndex season , requestTypes reques
         mParamURL = mParamURL + name + "=" + value + "&";
         return this;
     }
-    
+
     public void sendGet() throws IOException {
         
         mUrl += mParamURL;
@@ -234,6 +233,12 @@ public datafetcher dataFetch(int timeout, yearIndex season , requestTypes reques
             e.printStackTrace();
         }
     }
+
+    public datafetcher clearUrl() { 
+        mUrl =  "https://frc-api.firstinspires.org/v2.0/";
+        return this;
+    }
+
 
     public String receiveBody(){
         return mBody;

@@ -33,7 +33,8 @@ public class App {
 
     private void runMatchScores() {
         try {
-        mDataFetcher.dataFetch(300, yearIndex.DEEPSPACE, requestTypes.MATCHES, "MABOS")
+        mDataFetcher.clearUrl()
+        .dataFetch(300, yearIndex.DEEPSPACE, requestTypes.MATCHES, "MABOS")
         .addParameter("teamNumber", "467")
         .addParameter("tournamentlevel", "playoff")
         .sendGet();
@@ -45,9 +46,11 @@ public class App {
     }
 
     private void runDetailedScores() {
-        mDataFetcher.addParameter("matchNumber", "2");
         try {
-        mDataFetcher.sendGet();
+        mDataFetcher.clearUrl()
+        .dataFetch(300, yearIndex.DEEPSPACE, requestTypes.SCORES, "MABOS", tournementLevel.QUALIFICATIONS)
+            .addParameter("matchNumber", "2")
+            .sendGet();;
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -72,8 +75,30 @@ public class App {
     }
 
     private void writeToFile(String response, requestTypes type) {
+        String mName;
         mJsonParser = new frcJsonParser(response, type);
-        mfWriter = new fileWriter(CDL.toString(mJsonParser.docs), "Matches");
+        
+        switch(type){
+            case MATCHES:
+                mName = "Matches";
+            
+            case AWARDS:
+                mName = "Awards";
+            
+            case EVENTS:
+                mName = "Events";
+
+            case TEAMS:
+                mName = "Teams";
+            
+            case SCORES:
+                mName = "Scores";
+
+            default:
+                mName = "Null";
+        }
+
+        mfWriter = new fileWriter(CDL.toString(mJsonParser.docs), mName);
         try {
         mfWriter.writeToFile();
         } catch(IOException e) {
@@ -87,11 +112,11 @@ public class App {
       //  app.runAwards();
       //  app.writeToFile(app.recieveBody(), requestTypes.AWARDS);
 
-        app.runMatchScores();
-        app.writeToFile(app.recieveBody(), requestTypes.MATCHES);
+        // app.runMatchScores();
+        // app.writeToFile(app.recieveBody(), requestTypes.MATCHES);
 
-      //  app.runDetailedScores();
-        //app.writeToFile(app.recieveBody(), requestTypes.SCORES);
+        app.runDetailedScores();
+        app.writeToFile(app.recieveBody(), requestTypes.SCORES);
         
     }
 }
