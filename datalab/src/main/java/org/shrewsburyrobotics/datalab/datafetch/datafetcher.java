@@ -214,6 +214,12 @@ public datafetcher dataFetch(int timeout, yearIndex season , requestTypes reques
         return this;
     }
 
+    public datafetcher removeParameters() {
+        this.mParamURL = "";
+        return this;
+    }
+
+
     public void sendGet() throws IOException {
         
         mUrl += mParamURL;
@@ -240,7 +246,7 @@ public datafetcher dataFetch(int timeout, yearIndex season , requestTypes reques
     }
 
 
-    public String receiveBody(){
+    public String receiveBody() {
         return mBody;
     }
 }

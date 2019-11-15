@@ -33,7 +33,8 @@ public class App {
 
     private void runMatchScores() {
         try {
-        mDataFetcher.clearUrl()
+        datafetcher mDataFetcher1 = new datafetcher();
+        mDataFetcher1.clearUrl().removeParameters()
             .dataFetch(300, yearIndex.DEEPSPACE, requestTypes.MATCHES, "MABOS")
             .addParameter("teamNumber", "467")
             .addParameter("tournamentlevel", "playoff")
@@ -47,7 +48,8 @@ public class App {
 
     private void runDetailedScores() {
         try {
-        mDataFetcher.clearUrl()
+        datafetcher mDataFetcher2 = new datafetcher();
+        mDataFetcher2.clearUrl().removeParameters()
             .dataFetch(300, yearIndex.DEEPSPACE, requestTypes.SCORES, "MABOS", tournementLevel.QUALIFICATIONS)
             .addParameter("matchNumber", "2")
             .sendGet();
