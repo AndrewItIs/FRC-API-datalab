@@ -235,7 +235,7 @@ public datafetcher dataFetch(int timeout, yearIndex season , requestTypes reques
     }
 
     public datafetcher clearUrl() { 
-        mUrl =  "https://frc-api.firstinspires.org/v2.0/";
+        this.mUrl =  "https://frc-api.firstinspires.org/v2.0/";
         return this;
     }
 

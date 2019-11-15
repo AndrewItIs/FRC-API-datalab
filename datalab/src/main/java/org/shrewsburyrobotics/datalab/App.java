@@ -34,10 +34,10 @@ public class App {
     private void runMatchScores() {
         try {
         mDataFetcher.clearUrl()
-        .dataFetch(300, yearIndex.DEEPSPACE, requestTypes.MATCHES, "MABOS")
-        .addParameter("teamNumber", "467")
-        .addParameter("tournamentlevel", "playoff")
-        .sendGet();
+            .dataFetch(300, yearIndex.DEEPSPACE, requestTypes.MATCHES, "MABOS")
+            .addParameter("teamNumber", "467")
+            .addParameter("tournamentlevel", "playoff")
+            .sendGet();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -48,9 +48,9 @@ public class App {
     private void runDetailedScores() {
         try {
         mDataFetcher.clearUrl()
-        .dataFetch(300, yearIndex.DEEPSPACE, requestTypes.SCORES, "MABOS", tournementLevel.QUALIFICATIONS)
+            .dataFetch(300, yearIndex.DEEPSPACE, requestTypes.SCORES, "MABOS", tournementLevel.QUALIFICATIONS)
             .addParameter("matchNumber", "2")
-            .sendGet();;
+            .sendGet();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -77,7 +77,7 @@ public class App {
     private void writeToFile(String response, requestTypes type) {
         String mName;
         mJsonParser = new frcJsonParser(response, type);
-        
+
         switch(type){
             case MATCHES:
                 mName = "Matches";
@@ -112,8 +112,8 @@ public class App {
       //  app.runAwards();
       //  app.writeToFile(app.recieveBody(), requestTypes.AWARDS);
 
-        // app.runMatchScores();
-        // app.writeToFile(app.recieveBody(), requestTypes.MATCHES);
+        app.runMatchScores();
+        app.writeToFile(app.recieveBody(), requestTypes.MATCHES);
 
         app.runDetailedScores();
         app.writeToFile(app.recieveBody(), requestTypes.SCORES);

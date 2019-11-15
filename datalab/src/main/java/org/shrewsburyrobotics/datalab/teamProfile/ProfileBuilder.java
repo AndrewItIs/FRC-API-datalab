@@ -6,7 +6,7 @@ import org.shrewsburyrobotics.datalab.datawrite.*;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class teamProfileBuilder {
+public class ProfileBuilder {
     //will not have a singleton, each instance will represent a new team
     private int mTeamNumber;
     private yearIndex mSeason;
@@ -16,7 +16,7 @@ public class teamProfileBuilder {
 
     private datafetcher mEventDatafetcher;
 
-    public teamProfileBuilder(int teamNumber, yearIndex season) {
+    public ProfileBuilder(int teamNumber, yearIndex season) {
 
         
         //assign team number
@@ -40,7 +40,7 @@ public class teamProfileBuilder {
 
     }
 
-    public teamProfileBuilder addMatches() {
+    public ProfileBuilder addMatches() {
         datafetcher mMatchDatafetcher = new datafetcher();
         for(int i = 0; i <= mEventArray.size(); i++) {
             try {            
