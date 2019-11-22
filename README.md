@@ -12,4 +12,4 @@
  </ol>
  </br>
  
- <h2 name="mode">How it works </h2>
+ <h2> How it works </h2>
