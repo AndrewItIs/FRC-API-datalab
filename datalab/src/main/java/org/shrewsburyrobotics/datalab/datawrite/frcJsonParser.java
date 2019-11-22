@@ -17,7 +17,7 @@ public class frcJsonParser {
 Gson gson = new Gson();
 public JSONArray docs;
 public JSONObject jsonResponse;
-public File file = new File("C://Users//Andrew//Documents//testcsv");
+public File file = new File(fileIndex.path);
 public File mTestFile;
 public String csv;
 public String flattenedJson, test;
