@@ -8,8 +8,10 @@
   </p>
   
   <ol>
-  <li href="mode"><a href="mode">How it works</a></li>
- </ol>
+   <li><a href="#sec1">How it works</a></li>
+  </ol>
  </br>
  
- <h2> How it works </h2>
+ <h2 name="sec1"> How it works </h2>
+ </br>
+ <h2 name="sec2"></h2>
