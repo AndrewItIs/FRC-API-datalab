@@ -37,7 +37,6 @@ public class App {
         mDataFetcher1.clearUrl().removeParameters()
             .dataFetch(300, yearIndex.DEEPSPACE, requestTypes.MATCHES, "MABOS")
             .addParameter("teamNumber", "467")
-            .addParameter("tournamentlevel", "playoff")
             .sendGet();
         } catch (IOException e) {
             e.printStackTrace();
@@ -114,8 +113,8 @@ public class App {
       //  app.runAwards();
       //  app.writeToFile(app.recieveBody(), requestTypes.AWARDS);
 
-        app.runMatchScores();
-        app.writeToFile(app.recieveBody(), requestTypes.MATCHES);
+        // app.runMatchScores();
+        // app.writeToFile(app.recieveBody(), requestTypes.MATCHES);
 
         app.runDetailedScores();
         app.writeToFile(app.recieveBody(), requestTypes.SCORES);

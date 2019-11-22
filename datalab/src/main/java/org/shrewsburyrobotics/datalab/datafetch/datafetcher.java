@@ -129,7 +129,7 @@ public datafetcher dataFetch(int timeout, yearIndex season , requestTypes reques
                 mUrl += "matches/";
         }
 
-        mUrl += eventCode;
+        mUrl += eventCode +"/";
         rtype = requestType;
         return this;
     }
@@ -215,7 +215,7 @@ public datafetcher dataFetch(int timeout, yearIndex season , requestTypes reques
     }
 
     public datafetcher removeParameters() {
-        this.mParamURL = "";
+        this.mParamURL = "?";
         return this;
     }
 
@@ -242,6 +242,7 @@ public datafetcher dataFetch(int timeout, yearIndex season , requestTypes reques
 
     public datafetcher clearUrl() { 
         this.mUrl =  "https://frc-api.firstinspires.org/v2.0/";
+        this.mParamURL = "?";
         return this;
     }
 

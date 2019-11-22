@@ -27,7 +27,7 @@ public class ProfileBuilder {
         try {
             mEventDatafetcher = new datafetcher()
                 .dataFetch(300, season, requestTypes.EVENTS)
-                .addParameter("teamNumber", Double.toString(teamNumber));
+                .addParameter("districtCode", Double.toString(teamNumber));
             mEventDatafetcher.sendGet();
             mEventString = mEventDatafetcher.receiveBody();
             frcJsonParser mEventfWriter = new frcJsonParser(mEventString, requestTypes.EVENTS);
