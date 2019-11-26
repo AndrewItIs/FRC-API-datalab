@@ -2,6 +2,9 @@ package org.shrewsburyrobotics.datalab.datafetch;
 
 import java.io.IOException;
 
+import org.shrewsburyrobotics.datalab.datawrite.fileIndex;
+import org.shrewsburyrobotics.datalab.datawrite.fileWriter;
+
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -11,9 +14,11 @@ public class datafetcher {
 //create signleton for the httpClient
 private final OkHttpClient mHttpClient = new OkHttpClient();
 public String mBody;
+public static String mStaticBody;
 private int mTimeOut;
-private String mUrl = "https://frc-api.firstinspires.org/v2.0/";
-private String mParamURL = "?";
+public String mUrl = "https://frc-api.firstinspires.org/v2.0/";
+public String mParamURL = "?";
+public fileIndex mFileIndex;
 public requestTypes rtype;
 
 public datafetcher() {
@@ -25,51 +30,54 @@ public datafetcher() {
  */
 public datafetcher dataFetch(int timeout, yearIndex season , requestTypes requestType) {
         mTimeOut = timeout; //no use currently
+        //System.out.println("DataFetcher 1" + season);
         //season switch
         switch(season) {
             case POWER_UP:
-                mUrl += "2018/";
+                this.mUrl += "2018/";
                 break;
 
             case DEEPSPACE:
-                mUrl += "2019/";
+                //System.out.println("deepspace " + this.mUrl);
+                this.mUrl += "2019/";
+                //System.out.println("deepspace 2 " + this.mUrl);           
                 break;
 
             case INFINITE_RECHARGE:
-                mUrl += "2020/";
+                this.mUrl += "2020/";
                 break;
 
             default:
             //defaults to current year (made in 2020)
-                mUrl += "2020/";
+                this.mUrl += "2020/";
         }
 
         switch(requestType){
             case MATCHES:
-                mUrl += "matches/";
+                this.mUrl += "matches/";
                 break;
 
             case AWARDS:
-                mUrl += "awards/";
+                this.mUrl += "awards/";
                 break;
 
             case EVENTS:
-                mUrl += "events/";
+                this.mUrl += "events/";
                 break;
 
             case TEAMS:
-                mUrl += "teams/";
+                this.mUrl += "teams/";
                 break;
 
             case SCORES:
-                mUrl += "scores/";
+                this.mUrl += "scores/";
                 break;
 
             default:
                 //defaults to matches
-                mUrl += "matches/";
+                this.mUrl += "matches/";
             
-            rtype = requestType;
+            this.rtype = requestType;
         }
         return this;
     }
@@ -82,55 +90,57 @@ public datafetcher dataFetch(int timeout, yearIndex season , requestTypes reques
      * @param eventCode
      */
     public datafetcher dataFetch(int timeout, yearIndex season, requestTypes requestType, String eventCode) {
-        mTimeOut = timeout; //no use currently
-
+        this.mTimeOut = timeout; //no use currently
+        //System.out.println("DataFetcher 2" + season);
         //season switch
         switch(season) {
             case POWER_UP:
-                mUrl += "2018/";
+                this.mUrl += "2018/";
                 break;
 
             case DEEPSPACE:
-                mUrl += "2019/";
+            //System.out.println("deepspace " + this.mUrl);
+                this.mUrl += "2019/";
+                //System.out.println("deepspace 2 " + this.mUrl);
                 break;
 
             case INFINITE_RECHARGE:
-                mUrl += "2020/";
+                this.mUrl += "2020/";
                 break;
 
             default:
             //defaults to current year (made in 2020)
-                mUrl += "2020/";
+                this.mUrl += "2020/";
         }
 
         switch(requestType){
             case MATCHES:
-                mUrl += "matches/";
+                this.mUrl += "matches/";
                 break;
 
             case AWARDS:
-                mUrl += "awards/";
+                this.mUrl += "awards/";
                 break;
 
             case EVENTS:
-                mUrl += "events/";
+                this.mUrl += "events/";
                 break;
 
             case TEAMS:
-                mUrl += "teams/";
+                this.mUrl += "teams/";
                 break;
 
             case SCORES:
-                mUrl += "scores/";
+                this.mUrl += "scores/";
                 break;
 
             default:
                 //defaults to matches
-                mUrl += "matches/";
+                this.mUrl += "matches/";
         }
 
-        mUrl += eventCode +"/";
-        rtype = requestType;
+        this.mUrl += eventCode +"/";
+        this.rtype = requestType;
         return this;
     }
 
@@ -143,64 +153,64 @@ public datafetcher dataFetch(int timeout, yearIndex season , requestTypes reques
      * @param level
      */
     public datafetcher dataFetch(int timeout, yearIndex season, requestTypes requestType, String eventCode, tournementLevel level) {
-        mTimeOut = timeout; //no use currently
+        this.mTimeOut = timeout; //no use currently
 
         //season switch
         switch(season) {
             case POWER_UP:
-                mUrl += "2018/";
+                this.mUrl += "2018/";
                 break;
 
             case DEEPSPACE:
-                mUrl += "2019/";
+                this.mUrl += "2019/";
                 break;
 
             case INFINITE_RECHARGE:
-                mUrl += "2020/";
+                this.mUrl += "2020/";
                 break;
 
             default:
             //defaults to current year (made in 2020)
-                mUrl += "2020/";
+                this.mUrl += "2020/";
         }
 
         switch(requestType){
             case MATCHES:
-                mUrl += "matches/";
+                this.mUrl += "matches/";
                 break;
 
             case AWARDS:
-                mUrl += "awards/";
+                this.mUrl += "awards/";
                 break;
 
             case EVENTS:
-                mUrl += "events/";
+                this.mUrl += "events/";
                 break;
 
             case TEAMS:
-                mUrl += "teams/";
+                this.mUrl += "teams/";
                 break;
 
             case SCORES:
-                mUrl += "scores/";
+                this.mUrl += "scores/";
                 break;
 
             default:
                 //defaults to matches
-                mUrl += "matches/";
+                this.mUrl += "matches/";
         }
 
-        mUrl += eventCode +"/";
+        this.mUrl += eventCode +"/";
 
         switch(level) {
             case QUALIFICATIONS:
-                mUrl += "qual/";
+                this.mUrl += "qual/";
                 break;
             
             case FINALS:
-                mUrl += "playoff/";
+                this.mUrl += "playoff/";
         }
-        rtype = requestType;
+        this.rtype = requestType;
         return this;
     }
 
@@ -210,7 +220,7 @@ public datafetcher dataFetch(int timeout, yearIndex season , requestTypes reques
      * @param value string value of the parameter
      */
     public datafetcher addParameter(String name, String value) {
-        mParamURL = mParamURL + name + "=" + value + "&";
+        this.mParamURL = this.mParamURL + name + "=" + value + "&";
         return this;
     }
 
@@ -222,10 +232,10 @@ public datafetcher dataFetch(int timeout, yearIndex season , requestTypes reques
 
     public void sendGet() throws IOException {
         
-        mUrl += mParamURL;
+        this.mUrl += this.mParamURL;
 
         Request request = new Request.Builder()
-            .url(""+ mUrl)
+            .url(""+ this.mUrl)
             .get()
             .addHeader("Authorization", "Basic YW5kcmV3NDY3OjZGMkM0NzA1LUQyNjEtNDJGMi05OEIyLTc4QTBDNjZCRkI1NA==")
             .addHeader("Accept", "application/json")
@@ -234,20 +244,30 @@ public datafetcher dataFetch(int timeout, yearIndex season , requestTypes reques
         try (Response mResponse = mHttpClient.newCall(request).execute()) {          
             if(!mResponse.isSuccessful()) throw new IOException("Unexpected error: " + mResponse);
 
-            mBody = mResponse.body().string();
+            this.mBody = mResponse.body().string();
+           // System.out.println("sendget 2" + this.mBody);
+            this.mStaticBody = this.mBody;
+            //System.out.println("sendget 2" + this.mStaticBody);
         } catch(IOException e) {
             e.printStackTrace();
         }
+        //System.out.println("sendget 445" + this.mBody);
     }
 
-    public datafetcher clearUrl() { 
+    public datafetcher clearUrl() {
         this.mUrl =  "https://frc-api.firstinspires.org/v2.0/";
         this.mParamURL = "?";
         return this;
     }
 
+    public String requestUrl() {
+        return this.mUrl;
+    }
+
+
 
     public String receiveBody() {
-        return mBody;
+        //System.out.println("sendget body" + this.mBody);
+        return this.mStaticBody;
     }
 }

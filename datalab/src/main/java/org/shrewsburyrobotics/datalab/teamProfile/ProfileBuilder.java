@@ -45,7 +45,7 @@ public class ProfileBuilder {
         for(int i = 0; i <= mEventArray.size(); i++) {
             try {            
                 mMatchDatafetcher.dataFetch(300, mSeason, requestTypes.MATCHES, mEventArray.get(i))
-                .addParameter("teamNumber", Double.toHexString(mTeamNumber))
+                .addParameter("teamNumber", Double.toString(mTeamNumber))
                 .sendGet(); 
             } catch (IOException e) {
                 e.printStackTrace();

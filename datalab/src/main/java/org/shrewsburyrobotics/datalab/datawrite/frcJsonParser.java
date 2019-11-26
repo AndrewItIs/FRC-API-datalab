@@ -14,15 +14,15 @@ import org.shrewsburyrobotics.datalab.datafetch.requestTypes;
 
 
 public class frcJsonParser {
-Gson gson = new Gson();
-public JSONArray docs;
-public JSONObject jsonResponse;
-public File file = new File(fileIndex.path);
-public File mTestFile;
-public String csv;
-public String flattenedJson, test;
-public requestTypes requestType;
-
+    Gson gson = new Gson();
+    public JSONArray docs;
+    public JSONObject jsonResponse;
+    public File file = new File("C://Users//Andrew//Documents//testcsv");
+    public File mTestFile;
+    public String csv;
+    public String flattenedJson, test;
+    public requestTypes requestType;
+    
     public frcJsonParser(String mBody, requestTypes mRequestTypes) {
         //convert response body into JSON
             jsonResponse = new JSONObject(mBody);

@@ -48,7 +48,7 @@ public class App {
     private void runDetailedScores() {
         try {
         datafetcher mDataFetcher2 = new datafetcher();
-        mDataFetcher2.clearUrl().removeParameters()
+        mDataFetcher2//.clearUrl().removeParameters()
             .dataFetch(300, yearIndex.DEEPSPACE, requestTypes.SCORES, "MABOS", tournementLevel.QUALIFICATIONS)
             .addParameter("matchNumber", "2")
             .sendGet();
@@ -58,6 +58,11 @@ public class App {
 
         responseTest = mDataFetcher.receiveBody();
     }
+
+    private String requestUrl() {
+        return mDataFetcher.requestUrl();
+    }
+
 
     private void run() {
         mDataFetcher.addParameter("matchNumber", "2");
@@ -82,21 +87,26 @@ public class App {
         switch(type){
             case MATCHES:
                 mName = "Matches";
-            
+                break;
+
             case AWARDS:
                 mName = "Awards";
-            
+                break;
+
             case EVENTS:
                 mName = "Events";
+                break;
 
             case TEAMS:
                 mName = "Teams";
-            
-            case SCORES:
+                break;
+
+            case SCORES:          
                 mName = "Scores";
+                break;
 
             default:
-                mName = "Null";
+                mName="null";
         }
 
         mfWriter = new fileWriter(CDL.toString(mJsonParser.docs), mName);
@@ -113,11 +123,14 @@ public class App {
       //  app.runAwards();
       //  app.writeToFile(app.recieveBody(), requestTypes.AWARDS);
 
-        // app.runMatchScores();
-        // app.writeToFile(app.recieveBody(), requestTypes.MATCHES);
+        app.runMatchScores();
+        app.writeToFile(app.recieveBody(), requestTypes.MATCHES);
+        //System.out.println(app.recieveBody() + app.requestUrl());
+    
 
         app.runDetailedScores();
         app.writeToFile(app.recieveBody(), requestTypes.SCORES);
+        //System.out.println(app.recieveBody() + app.requestUrl());
         
     }
 }
