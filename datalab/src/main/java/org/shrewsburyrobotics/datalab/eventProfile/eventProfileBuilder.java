@@ -1,4 +1,4 @@
-package org.shrewsburyrobotics.datalab.teamProfile;
+package org.shrewsburyrobotics.datalab.eventProfile;
 
 import org.shrewsburyrobotics.datalab.datafetch.*;
 import org.shrewsburyrobotics.datalab.datawrite.*;
@@ -6,17 +6,16 @@ import org.shrewsburyrobotics.datalab.datawrite.*;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class ProfileBuilder {
+public class eventProfileBuilder {
     //will not have a singleton, each instance will represent a new team
     private int mTeamNumber;
     private yearIndex mSeason;
     private String mEventString;
-    private String mDistrictCode, mTeamResponseBody;
+    private String mDistrictCodeBody, mDistrictCode;
     private datafetcher mEventDatafetcher;
 
-    public ProfileBuilder(int teamNumber, yearIndex season) {
+    public eventProfileBuilder(int teamNumber, yearIndex season, String mDistrictCode) {
 
-        
         //assign team number
         this.mTeamNumber = teamNumber;
         this.mSeason = season;
@@ -38,17 +37,17 @@ public class ProfileBuilder {
 
     }
 
-    public ProfileBuilder addDistrictCode() {
+    public eventProfileBuilder addDistrictCode() {
         datafetcher mDatafetcher = new datafetcher();
             try {            
-                mDatafetcher.dataFetch(300, mSeason, requestTypes.TEAMS)
-                .addParameter("teamNumber", Double.toString(mTeamNumber))
+                mDatafetcher.dataFetch(300, mSeason, requestTypes.EVENTS)
+                .addParameter("districtCode", this.mDistrictCode)
                 .sendGet(); 
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            this.mTeamResponseBody = mDatafetcher.receiveBody();
-            frcJsonParser mDistrictWriter = new frcJsonParser(this.mTeamResponseBody, requestTypes.EVENTS);
+            this.mDistrictCodeBody = mDatafetcher.receiveBody();
+            frcJsonParser mDistrictWriter = new frcJsonParser(this.mDistrictCodeBody, requestTypes.EVENTS);
             this.mDistrictCode = mDistrictWriter.docs.getJSONObject(4).toString();
 
         return this;
